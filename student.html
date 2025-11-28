@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Pagination</title>
+</head>
+<body>
+
+<h2>Student List (Paginated)</h2>
+
+<div id="studentList"></div>
+
+<br>
+
+<button onclick="prevPage()">Previous</button>
+<button onclick="nextPage()">Next</button>
+
+<script>
+    // 30 sample student names
+    const students = [
+        "shyam","chandu","raju","ramu","krishna",
+        "yuva","raj","krishna","jaya","shyam",
+        "Student 11","Student 12","Student 13","Student 14","Student 15",
+        "Student 16","Student 17","Student 18","Student 19","Student 20",
+        "Student 21","Student 22","Student 23","Student 24","Student 25",
+        "Student 26","Student 27","Student 28","Student 29","Student 30"
+    ];
+
+    let currentPage = 1;
+    const pageSize = 10;
+
+    function displayList() {
+        let start = (currentPage - 1) * pageSize;
+        let end = start + pageSize;
+
+        let pageStudents = students.slice(start, end);
+
+        document.getElementById("studentList").innerHTML =
+            pageStudents.join("<br>");
+    }
+
+    function nextPage() {
+        if (currentPage * pageSize < students.length) {
+            currentPage++;
+            displayList();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayList();
+        }
+    }
+
+    displayList();
+</script>
+
+</body>
+</html>
